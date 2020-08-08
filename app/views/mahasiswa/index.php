@@ -6,12 +6,16 @@
             </h3>
 
             <?php foreach ( $data['mhs'] as $mhs) : ?>
-                <ul>
-                    <li><?= $mhs['nama']; ?></li>
-                    <li><?= $mhs['nrp']; ?></li>
-                    <li><?= $mhs['email']; ?></li>
-                    <li><?= $mhs['jurusan']; ?></li>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <?= $mhs['nama']; ?>
+                    <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge badge-primary">detail</a></span>
+                    
+                    </li>
                 </ul>
+
             <?php endforeach; ?>
 
         </div>

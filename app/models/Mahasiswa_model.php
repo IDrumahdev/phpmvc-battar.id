@@ -21,27 +21,21 @@ class Mahasiswa_model {
     //     ],
     // ];
 
-    //database handler
-    private $dbh;
-    private $stmt;
+    private $table = 'mahasiswa';
+    private $db;
 
     public function __construct(){
-        //data source name
-        $dsn = 'mysql:host=127.0.0.1;dbname=phpmvc';
-
-        try {
-            //code...
-            $this->dbh = new PDO($dsn,'root','');
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-
+        $this->db = new Database;
     }
 
     public function getAllMahasiswa(){
-        // return $this->mhs;
-        $this->stmt = $this->dbh->prepare('SELECT * FROM mahasiswa');
-        $this->stmt->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+       $this->db->query('SELECT * FROM ' . $this->table);
+       return $this->db->resultSet();
+    }
+
+    public function getMahasiswaByID($id){
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+        $this->db->bind('id', $id);
+        return $this->db->single();
     }
 }
