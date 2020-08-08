@@ -47,7 +47,7 @@ class Database {
                 default:
                     # code...
                     $type = PDO::PARAM_STR;
-                    // break;
+                    break;
             }
         }
 
@@ -68,5 +68,9 @@ class Database {
     public function single(){
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount(){
+        return $this->stmt->rowCount();
     }
 }
